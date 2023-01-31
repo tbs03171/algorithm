@@ -1,4 +1,4 @@
-compile = "javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"
+compile = "javac -classpath .:target/dependency/* -d . $(find . -type f -name 'Main.java')"
 run = "java -classpath .:target/dependency/* Main"
 hidden = ["**/*.class"]
 
