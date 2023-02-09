@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class ch6_4 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
