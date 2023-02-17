@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class ch7_3 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
@@ -22,7 +22,8 @@ public class Main {
       int mid = (start + end) / 2;
       int sum = 0;
       for (int i = 0; i < n; i++) {
-        if (arr[i] <= mid) continue;
+        if (arr[i] <= mid)
+          continue;
         sum = sum + (arr[i] - mid);
       }
       if (sum >= m) {
@@ -32,7 +33,7 @@ public class Main {
         end = mid - 1;
       }
     }
-    
+
     // 결과 출력
     System.out.println(result);
   }
