@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class ch8_5 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
@@ -17,7 +17,7 @@ public class Main {
     }
 
     // 다이나믹 프로그래밍
-    int[] d = new int[m+1];
+    int[] d = new int[m + 1];
     Arrays.fill(d, 10001);
     d[0] = 0;
     for (int i = 0; i < n; i++) {
