@@ -28,7 +28,7 @@ class Node implements Comparable<Node> {
   }
 }
 
-public class Main {
+public class ch9_3 {
   public static int INF = (int) 1e9; // 무한 (10억)
   public static int n, m, c;
   // 각 노드에 연결되어 있는 노드에 대한 정보를 담는 배열
