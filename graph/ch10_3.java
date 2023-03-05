@@ -23,9 +23,11 @@ class Edge implements Comparable<Edge> {
     return this.nodeB;
   }
 
+  // 거리(비용)가 짧은 것이 높은 우선순위를 가지도록 설정
   @Override
   public int compareTo(Edge other) {
-    if (this.distance < other.distance) return -1;
+    if (this.distance < other.distance)
+      return -1;
     return 1;
   }
 }
@@ -42,7 +44,8 @@ public class ch10_3 {
   // 특정 원소가 속한 집합을 찾기
   public static int findParent(int x) {
     // 루트 노드가 아니라면, 루트 노드를 찾을 때까지 재귀적으로 호출
-    if (parent[x] == x) return x;
+    if (parent[x] == x)
+      return x;
     return parent[x] = findParent(parent[x]);
   }
 
@@ -50,10 +53,12 @@ public class ch10_3 {
   public static void unionParent(int a, int b) {
     a = findParent(a);
     b = findParent(b);
-    if (a < b) parent[b] = a;
-    else parent[a] = b;
+    if (a < b)
+      parent[b] = a;
+    else
+      parent[a] = b;
   }
-  
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
@@ -88,7 +93,8 @@ public class ch10_3 {
         unionParent(a, b);
         result += cost;
         cnt++;
-        if (cnt == v-2) break; // 마지막 하나는 연결 X (마을 2개로 분리 위해)
+        if (cnt == v - 2)
+          break; // 마지막 하나는 연결 X (마을 2개로 분리 위해)
       }
     }
 
