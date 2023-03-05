@@ -30,7 +30,7 @@ class Edge implements Comparable<Edge> {
   }
 }
 
-public class Main {
+public class ch10_3 {
 
   // 노드 개수(V)와 간선 개수(E)
   public static int v, e;
