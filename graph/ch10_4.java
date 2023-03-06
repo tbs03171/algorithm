@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class ch10_4 {
   
   // 노드(과목)의 개수(V)
   // 노드의 개수는 최대 500
