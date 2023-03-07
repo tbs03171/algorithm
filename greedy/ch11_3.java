@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class ch11_3 {
 
   public static String str;
   public static int count0 = 0; // 전부 0으로 바꾸는 경우
