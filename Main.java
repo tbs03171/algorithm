@@ -1,36 +1,29 @@
 import java.util.*;
 
 public class Main {
+
+  public static int n, m;
+  // 1부터 10까지의 무게를 담을 수 있는 배열
+  public static int[] arr = new int[11];
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
-    // 동전 개수 입력 받기
-    int n = sc.nextInt();
+    // 볼링공의 개수 N, 공의 최대 무게 M
+    n = sc.nextInt();
+    m = sc.nextInt();
 
-    // 동전 정보 입력 받기
-    int[] coins = new int[n];
+    // 볼링공 무게 K 입력
     for (int i = 0; i < n; i++) {
-      coins[i] = sc.nextInt();
+      int k = sc.nextInt();
+      arr[k] += 1;
     }
 
-    // 동전 정보 정렬 하기
-    Arrays.sort(coins);
-
-    // 1부터 만들 수 있는지 없는지 확인
-    int result = 0;
-    boolean OK = false;
-    while (true) {
-      result++;
-      for (int i = 1; i <= result; i++) {
-        if () {
-          
-          break;
-        }
-      }
-      if (OK == false) break;
-    }
+    //
+    int cnt = 0;
 
     // 결과 출력
-    System.out.println(result);
+    System.out.println(cnt);
+
   }
 }
