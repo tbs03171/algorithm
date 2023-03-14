@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class ch12_2 {
 
   public static String str;
   public static ArrayList<Character> result = new ArrayList<Character>();
@@ -31,6 +31,7 @@ public class Main {
     }
 
     // 숫자가 하나라도 존재하는 경우 가장 뒤에 출력
-    if (sum != 0) System.out.print(sum);
+    if (sum != 0)
+      System.out.print(sum);
   }
 }
