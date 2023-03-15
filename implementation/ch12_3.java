@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Solution {
-  
+
   public int solution(String s) {
     int length = s.length(); // 문자열 길이
     int answer = length;
@@ -15,15 +15,17 @@ class Solution {
       for (int i = step; i < length; i += step) {
         String sub = "";
         for (int j = i; j < i + step; j++) {
-          if (j < s.length()) sub += s.charAt(j);
+          if (j < s.length())
+            sub += s.charAt(j);
         }
         if (sub.equals(prev)) { // 이전 문자열과 같으면
           cnt++;
         } else { // 이전 문자열과 다르면
-          compressed += (cnt >= 2)? cnt + prev : prev;
+          compressed += (cnt >= 2) ? cnt + prev : prev;
           sub = "";
           for (int j = i; j < i + step; j++) {
-            if (j < s.length()) sub += s.charAt(j);
+            if (j < s.length())
+              sub += s.charAt(j);
           }
           prev = sub; // 상태 초기화
           cnt = 1;
@@ -31,7 +33,7 @@ class Solution {
       }
 
       // 마지막 문자열의 경우 처리
-      compressed += (cnt >= 2)? cnt + prev : prev;
+      compressed += (cnt >= 2) ? cnt + prev : prev;
       // 길이가 더 짧다면 업데이트
       answer = Math.min(answer, compressed.length());
     }
