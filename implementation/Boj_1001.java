@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Main {
+class Boj_1001 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
@@ -9,6 +9,6 @@ class Main {
     int b = sc.nextInt();
 
     // 결과 출력
-    System.out.println(a * b);
+    System.out.println(a - b);
   }
 }
