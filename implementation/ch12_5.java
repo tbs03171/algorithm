@@ -1,7 +1,9 @@
 import java.util.*;
 
 class Node {
+
   
+
   private int time;
   private char direction;
 
@@ -20,7 +22,9 @@ class Node {
 }
 
 class Position {
+
   
+
   private int x;
   private int y;
 
@@ -44,12 +48,16 @@ public class Main {
   public static ArrayList<Node> info = new ArrayList<>(); // 방향 회전 정보
 
   // 처음에는 오른쪽을 보고 있으므로(동, 남, 서, 북)
-  public static int dx[] = {0, 1, 0, -1};
-  public static int dy[] = {1, 0, -1, 0};
+  public static int dx[] = {  0, 1, 0, -1  };
+  public static int dy[] = {  1, 0, -1, 0  };
 
   public static int turn(int direction, char c) {
-    if (c == 'L') direction = (direction == 0)? 3 : direction -1;
-    else direction = (direction + 1) % 4;
+    if (c == 'L')
+      
+      direction = (direction == 0)  ? 3 : direction -  1;
+    else
+      
+      direction = (direction + 1) % 4;
     return direction;
   }
 
@@ -97,7 +105,9 @@ public class Main {
     }
     return time;
   }
+
   
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
