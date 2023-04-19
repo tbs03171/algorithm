@@ -7,8 +7,8 @@ class Main {
   public static int[][] temp = new int[8][8]; // 벽을 설치한 뒤의 맵 배열
 
   // 4가지 이동 방향에 대한 배열
-  public static int[] dx = {-1, 0, 1, 0};
-  public static int[] dy = {0, 1, 0, -1};
+  public static int[] dx = { -1, 0, 1, 0 };
+  public static int[] dy = { 0, 1, 0, -1 };
 
   // 깊이 우선 탐색(DFS)을 이용해 각 바이러스가 사방으로 퍼지도록 하기
   public static void virus(int x, int y) {
@@ -73,7 +73,7 @@ class Main {
       }
     }
   }
-  
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
