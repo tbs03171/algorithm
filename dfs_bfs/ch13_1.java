@@ -35,7 +35,7 @@ class Main {
     // 너비 우선 탐색 (BFS) 수행
     Queue<Integer> q = new LinkedList<Integer>();
     q.offer(x);
-    while(!q.isEmpty()) {
+    while (!q.isEmpty()) {
       int now = q.poll();
       // 현재 도시에서 이동할 수 있는 모든 도시를 확인
       for (int i = 0; i < graph.get(now).size(); i++) {
@@ -59,6 +59,7 @@ class Main {
     }
 
     // 만약 최단 거리가 K인 도시가 없다면, -1 출력
-    if (!check) System.out.println(-1);
+    if (!check)
+      System.out.println(-1);
   }
 }
