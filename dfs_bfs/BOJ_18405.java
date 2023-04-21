@@ -49,9 +49,9 @@ class Main {
   public static ArrayList<Virus> viruses = new ArrayList<Virus>();
 
   // 바이러스가 퍼져나갈 수 있는 4가지의 위치
-  public static int[] dx = {-1, +1, 0, 0};
-  public static int[] dy = {0, 0, -1, +1};
-  
+  public static int[] dx = { -1, +1, 0, 0 };
+  public static int[] dy = { 0, 0, -1, +1 };
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
@@ -85,7 +85,8 @@ class Main {
     while (!q.isEmpty()) {
       Virus virus = q.poll();
       // 정확히 second만큼 초가 지나거나, 큐가 빌 때까지 반복
-      if (virus.getSecond() == targetS) break;
+      if (virus.getSecond() == targetS)
+        break;
       // 현재 노드에서 주변 4가지 위치를 각각 확인
       for (int i = 0; i < 4; i++) {
         int nx = virus.getX() + dx[i];
