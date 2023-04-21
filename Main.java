@@ -1,92 +1,106 @@
 import java.util.*;
 
+class Virus implements Comparable<Virus> {
+
+  private int index;
+  private int second;
+  private int x;
+  private int y;
+
+  public Virus(int index, int second, int x, int y) {
+    this.index = index;
+    this.second = second;
+    this.x = x;
+    this.y = y;
+  }
+
+  public int getIndex() {
+    return this.index;
+  }
+
+  public int getSecond() {
+    return this.second;
+  }
+
+  public int getX() {
+    return this.x;
+  }
+
+  public int getY() {
+    return this.y;
+  }
+
+  // 정렬 기준은 '번호가 낮은 순서'
+  @Override
+  public int compareTo(Virus other) {
+    if (this.index < other.index) {
+      return -1;
+    }
+    return 1;
+  }
+}
+
 class Main {
 
-  public static int n, m, result = 0;
-  public static int[][] arr = new int[8][8]; // 초기 맵 배열
-  public static int[][] temp = new int[8][8]; // 벽을 설치한 뒤의 맵 배열
+  // 시험관 크기 N, 바이러스 종류 K
+  public static int n, k;
+  // 전체 보드 정보를 담는 배열
+  public static int[][] graph = new int[200][200];
+  public static ArrayList<Virus> viruses = new ArrayList<Virus>();
 
-  // 4가지 이동 방향에 대한 배열
-  public static int[] dx = {-1, 0, 1, 0};
-  public static int[] dy = {0, 1, 0, -1};
-
-  // 깊이 우선 탐색(DFS)을 이용해 각 바이러스가 사방으로 퍼지도록 하기
-  public static void virus(int x, int y) {
-    for (int i = 0; i < 4; i++) {
-      int nx = x + dx[i];
-      int ny = y + dy[i];
-      // 상, 하, 좌, 우 중에서 바이러스가 퍼질 수 있는 경우
-      if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
-        if (temp[nx][ny] == 0) {
-          // 해당 위치에 바이러스 배치하고, 다시 재귀적으로 수행
-          temp[nx][ny] = 2;
-          virus(nx, ny);
-        }
-      }
-    }
-  }
-
-  // 현재 맵에서 안전 영역의 크기 계산하는 메서드
-  public static int getScore() {
-    int score = 0;
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        if (temp[i][j] == 0) {
-          score += 1;
-        }
-      }
-    }
-    return score;
-  }
-
-  // 깊이 우선 탐색(DFS)을 이용해 울타리를 설치하면서, 매번 안전 영역의 크기 계산
-  public static void dfs(int count) {
-    // 울타리가 3개 설치된 경우
-    if (count == 3) {
-      for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-          temp[i][j] = arr[i][j];
-        }
-      }
-      // 각 바이러스의 위치에서 전파 진행
-      for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-          if (temp[i][j] == 2) {
-            virus(i, j);
-          }
-        }
-      }
-      // 안전 영역의 최대값 계산
-      result = Math.max(result, getScore());
-      return;
-    }
-    // 빈 곳에 울타리를 설치
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        if (arr[i][j] == 0) {
-          arr[i][j] = 1;
-          count += 1;
-          dfs(count);
-          arr[i][j] = 0;
-          count -= 1;
-        }
-      }
-    }
-  }
+  // 바이러스가 퍼져나갈 수 있는 4가지의 위치
+  public static int[] dx = {-1, +1, 0, 0};
+  public static int[] dy = {0, 0, -1, +1};
   
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
+    // N, K 입력
     n = sc.nextInt();
-    m = sc.nextInt();
+    k = sc.nextInt();
 
     for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        arr[i][j] = sc.nextInt();
+      for (int j = 0; j < n; j++) {
+        graph[i][j] = sc.nextInt();
+        // 해당 위치에 바이러스가 존재하는 경우
+        if (graph[i][j] != 0) {
+          // (바이러스 종류, 시간, 위치 X, 위치 Y) 삽입
+          viruses.add(new Virus(graph[i][j], 0, i, j));
+        }
       }
     }
 
-    dfs(0);
-    System.out.println(result);
+    // 정렬 이후에 큐로 옮기기 (낮은 번호의 바이러스가 먼저 증식하므로)
+    Collections.sort(viruses);
+    Queue<Virus> q = new LinkedList<Virus>();
+    for (int i = 0; i < viruses.size(); i++) {
+      q.offer(viruses.get(i));
+    }
+
+    int targetS = sc.nextInt();
+    int targetX = sc.nextInt();
+    int targetY = sc.nextInt();
+
+    // 너비 우선 탐색(BFS) 진행
+    while (!q.isEmpty()) {
+      Virus virus = q.poll();
+      // 정확히 second만큼 초가 지나거나, 큐가 빌 때까지 반복
+      if (virus.getSecond() == targetS) break;
+      // 현재 노드에서 주변 4가지 위치를 각각 확인
+      for (int i = 0; i < 4; i++) {
+        int nx = virus.getX() + dx[i];
+        int ny = virus.getY() + dy[i];
+        // 해당 위치로 이동할 수 있는 경우
+        if (0 <= nx && nx < n && 0 <= ny && ny < n) {
+          // 아직 방문하지 않은 위치라면, 그 위치에 바이러스 넣기
+          if (graph[nx][ny] == 0) {
+            graph[nx][ny] = virus.getIndex();
+            q.offer(new Virus(virus.getIndex(), virus.getSecond() + 1, nx, ny));
+          }
+        }
+      }
+    }
+
+    System.out.println(graph[targetX - 1][targetY - 1]);
   }
 }
